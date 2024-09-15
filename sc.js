@@ -14,6 +14,20 @@ table.id = 'myTable'
 // theader element 
 const thead = document.createElement('thead')
 
+// pluto Notes - create link
+// creates anchor ele for pluto link 
+const a_pluto = document.createElement('a')
+// creates text for link - createTextNode
+const linkText_pluto = document.createTextNode("remains controversial")
+// href link 
+a_pluto.href = "http://www.usatoday.com/story/tech/2014/10/02/pluto-planet-solar-system/16578959/"
+// nodeValue accesses string held in NodeValue property
+a_pluto.textContent = linkText_pluto.nodeValue
+// first part of string for pluto notes
+let pluto_str = "Declassified as a planet in 2006, but this "
+
+
+
 let data = {
     "merc":[
         {
@@ -93,7 +107,7 @@ let data = {
     ],
     'saturn':[
         {
-            z:'2a',
+            z:'9a',
             a: 'Saturn',
             b: 568,
             c: '120,536',
@@ -119,6 +133,36 @@ let data = {
             h: -195,
             i: 27,
             j:''
+        }
+    ],
+    'neptune':[
+        {
+            z:'4a',
+            a: 'Neptune',
+            b: 102,
+            c: '49,528',
+            d: 1638,
+            e: 11.0,
+            f: 16.1,
+            g: 4495.1,
+            h: -200,
+            i: 14,
+            j: ''
+        }
+    ],
+    'pluto':[
+        {
+            z:'2a',
+            a:'Pluto',
+            b: 0.0146,
+            c: '2,370',
+            d: 2095,
+            e: 0.7,
+            f: 153.3,
+            g: 5906.4,
+            h: -225,
+            i: 5,
+            j: ''
         }
     ]
 
@@ -250,6 +294,7 @@ rowHeadArr.forEach((item,i)=>{
     // add index together + 'a'
     th.id = i+'a'
     console.log(th.id)
+    
     // apply span attributes to row headers
     // terrestrial planets
     if (th.id == '0a'){
@@ -371,7 +416,7 @@ rowHeadArr.forEach((item,i)=>{
         igiantTH.textContent = 'Ice Giants'
         igiantTH.rowSpan = 2
         igiantTH.scope = 'rowgroup'
-        igiantTR.append(igiantTH)
+         igiantTR.append(igiantTH)
         table.append(igiantTR)
 
         for (const item in data){
@@ -391,18 +436,60 @@ rowHeadArr.forEach((item,i)=>{
                         table.append(igiantTR)
                     }                   
                 }      
-            }
+            } if (item == 'neptune'){
+                // must create a new tr 
+                const nepTR = document.createElement('tr')
+                for (const b in data[item][0]){
+                    // exclude first key('z')
+                    if(b!='z'){
+                        const td = document.createElement('td')
+                        // add each item/property in each cell
+                        td.textContent = data[item][0][b]
+                        // assign scope if textContent = Jupiter
+                        if (td.textContent =='Uranus'){
+                            td.scope = 'row'
+                        }
+                        nepTR.append(td)
+                        table.append(nepTR)
+                    }                   
+                }      
+            } 
         }
-    }
 
     
+    }
+    // dwarf planets
+    if(th.id =='2a'){
+        th.colSpan = 2
+        table.append(th)
+        for (const item in data){    
+            // add pluto row
+            if (item == 'pluto'){
+                // must create a new tr 
+                for (const b in data[item][0]){
+                    // exclude first key('z')
+                    if(b!='z'){
+                        const td = document.createElement('td')
+                        // add each item/property in each cell
+                        td.textContent = data[item][0][b]
+                        // assign scope if textContent = Jupiter
+                        if (td.textContent =='Pluto'){
+                            td.scope = 'row'
+                        }
+                        // pluto - j key - notes - link text
+                        if (b =='j'){
+                            td.append(pluto_str)
+                            td.append(a_pluto)
+                        }
+
+                        table.append(td)
+                    }                   
+                }      
+            }
+        } 
+    }
+    
 })
-
-
-
-
-//  // uranus
-//  
 
 
 
