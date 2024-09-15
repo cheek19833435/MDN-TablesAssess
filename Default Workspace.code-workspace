@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "../../flexbox-grid"
+		},
+		{
+			"path": "../../JavaScript30/04 - Array Cardio Day 1"
+		},
+		{
+			"path": "../../JavaScript30/07 - Array Cardio Day 2"
+		},
+		{
+			"path": "../../javascript-exercises/08_calculator"
+		},
+		{
+			"path": "../../javascript-exercises/09_palindromes"
+		},
+		{
+			"path": "../../javascript-exercises/10_fibonacci"
+		},
+		{
+			"path": "../../javascript-exercises/11_getTheTitles"
+		},
+		{
+			"path": "../../javascript-exercises/12_findTheOldest"
+		},
+		{
+			"path": "../../Calc-Final"
+		},
+		{
+			"path": "../TablesPrac"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
