@@ -11,6 +11,38 @@ body.append(container)
 // create table
 const table = document.createElement('table')
 table.id = 'myTable'
+// colgroup
+const colgroup = document.createElement('colgroup')
+
+// col dictionary for each column style
+let col_style = {
+    0:{
+        border:'',
+        bg:''
+    },
+    1:{
+        border:'',
+        bg:''
+    },
+    2:{
+        border: 'thick solid #C1437A',
+        bg: '#DCC48E'
+    }
+}
+
+// loop over colstyle dict
+for (const ppty in col_style){
+    console.log(ppty)
+    const col = document.createElement('col')
+    col.style.border = col_style[ppty]['border'] 
+    // col.style.backgroundColor = col_style[ppty]['bg']
+    colgroup.append(col)
+    table.append(colgroup)
+}
+
+
+// col.style.border = 'thick solid #C1437A'
+
 // theader element 
 const thead = document.createElement('thead')
 
@@ -461,6 +493,8 @@ rowHeadArr.forEach((item,i)=>{
     // dwarf planets
     if(th.id =='2a'){
         th.colSpan = 2
+        // align content to align items in table cell
+        th.style.alignContent = 'center'
         table.append(th)
         for (const item in data){    
             // add pluto row
@@ -472,6 +506,7 @@ rowHeadArr.forEach((item,i)=>{
                         const td = document.createElement('td')
                         // add each item/property in each cell
                         td.textContent = data[item][0][b]
+                        td.style.alignContent = 'center'
                         // assign scope if textContent = Jupiter
                         if (td.textContent =='Pluto'){
                             td.scope = 'row'
@@ -481,10 +516,11 @@ rowHeadArr.forEach((item,i)=>{
                             td.append(pluto_str)
                             td.append(a_pluto)
                         }
-
+                        
                         table.append(td)
                     }                   
                 }      
+            
             }
         } 
     }
